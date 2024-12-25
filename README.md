@@ -2,6 +2,7 @@
 
 Este proyecto es un gestor de tareas desarrollado con React, Ant Design y TypeScript. Incluye funcionalidades como creación, edición y eliminación de tareas, además de pruebas unitarias para garantizar su funcionamiento óptimo.
 
+DEMO: https://task-esencia-studio.vercel.app/
 ---
 
 ## Instalación

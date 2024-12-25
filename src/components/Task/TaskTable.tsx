@@ -3,12 +3,15 @@ import { Task } from '../../types/Task';
 import { Table, Button } from 'antd';
 
 interface Props {
+  isLoading: boolean;
   tasks: Task[]
   handleEditTask: (task: Task) => void;
   handleDeleteTask: (taskId: number) => void;
 }
 
-const TaskList: React.FC<Props> = ({
+const 
+TaskList: React.FC<Props> = ({
+  isLoading,
   tasks,
   handleEditTask,
   handleDeleteTask
@@ -42,7 +45,7 @@ const TaskList: React.FC<Props> = ({
     },
   ];
 
-  return <Table dataSource={tasks} columns={columns} rowKey="id" />;
+  return <Table loading={isLoading} dataSource={tasks} columns={columns} rowKey="id" />;
 };
 
 export default TaskList;

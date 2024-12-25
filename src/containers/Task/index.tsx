@@ -10,6 +10,7 @@ export const TaskContainer: React.FC = () => {
   const [tasks, setTasks] = useAtom(tasksAtom);
   const [taskLoaded, setTaskLoaded] = useAtom(tasksLoaded);
   const [openModal, setOpenModel] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [taskToEdit, setTaskToEdit] = useState<Task | null>(null);
   const [form] = Form.useForm<Task>();
 
@@ -28,6 +29,7 @@ export const TaskContainer: React.FC = () => {
   };
 
   const handleFetchTasks = async () => {
+    setIsLoading(true)
     try {
       const response = await fetch(`https://jsonplaceholder.typicode.com/todos`);
       if (!response.ok) {
@@ -47,6 +49,7 @@ export const TaskContainer: React.FC = () => {
     } catch (error) {
       console.error("Error al cargar las tareas:", error);
     }
+    setIsLoading(false)
   };
 
   const addTask = () => {
@@ -90,7 +93,8 @@ export const TaskContainer: React.FC = () => {
         <Button onClick={handleOpenModal} className="mb-2 bg-green-500" type="primary" >Nuevo +</Button>
       </div>
 
-      <TaskTable 
+      <TaskTable
+        isLoading={isLoading}
         tasks={tasks}
         handleEditTask={handleEditTask} 
         handleDeleteTask={deleteTask} 
